@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import com.pm.patient_service.grpc.BillingServiceGrpcClient;
 import org.springframework.stereotype.Service;
 
 import com.pm.patient_service.repository.PatientRepository;
@@ -19,10 +20,12 @@ import com.pm.patient_service.exception.PatientNotFoundException;
 @Service
 public class PatientService {
 
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
+    private final BillingServiceGrpcClient billingServiceGrpcClient;
 
-    public PatientService(PatientRepository patientRepository){
+    public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient) {
         this.patientRepository=patientRepository;
+        this.billingServiceGrpcClient=billingServiceGrpcClient;
     }
 
     public List<PatientResponseDTO> getPatients(){
@@ -38,6 +41,7 @@ public class PatientService {
         Patient newPatient=patientRepository.save(
             PatientMapper.toPatient(patientRequestDTO)
         );
+        billingServiceGrpcClient.createBillingAccount(newPatient.getId().toString(),newPatient.getName(),newPatient.getEmail());
         return PatientMapper.toDTO(newPatient);
 
     }
