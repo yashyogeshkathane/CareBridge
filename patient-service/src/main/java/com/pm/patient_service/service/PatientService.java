@@ -63,6 +63,11 @@ public class PatientService {
         patient.setDateofBirth(LocalDate.parse(patientRequestDTO.getDateofBirth()));
 
         Patient updatedPatient=patientRepository.save(patient);
+        billingServiceGrpcClient.updateBillingAccount(
+                updatedPatient.getId().toString(),
+                updatedPatient.getName(),
+                updatedPatient.getEmail()
+        );
         return PatientMapper.toDTO(updatedPatient);
 
 

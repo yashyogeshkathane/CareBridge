@@ -25,4 +25,19 @@ public class BillingGrpcService extends BillingServiceImplBase{
 
     }
 
+    @Override
+    public void updateBillingAccount(billing.BillingRequest billingRequest, StreamObserver<BillingResponse> responseObserver) {
+        log.info("updateBillingAccount request received {}", billingRequest.toString());
+
+        // Your logic to update the billing account in DB (if you have a DB)
+        BillingResponse response = BillingResponse.newBuilder()
+                .setAccountId("12345") // Or whatever logic you want
+                .setStatus("UPDATED")
+                .build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+
 }

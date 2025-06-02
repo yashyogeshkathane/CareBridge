@@ -5,6 +5,7 @@ option java_package="billing";
 
 service BillingService{
   rpc CreateBillingAccount (BillingRequest) returns (BillingResponse);
+  rpc UpdateBillingAccount (BillingRequest) returns (BillingResponse);
 }
 
 message BillingRequest{

@@ -40,4 +40,17 @@ public class BillingServiceGrpcClient {
         log.info("Received response from billing service via GRPC: {}", response);
         return response;
     }
+
+    public BillingResponse updateBillingAccount(String patientId, String name, String email) {
+        BillingRequest request = BillingRequest.newBuilder()
+                .setPatientId(patientId)
+                .setName(name)
+                .setEmail(email)
+                .build();
+
+        BillingResponse response = blockingStub.updateBillingAccount(request);
+        log.info("Received response from billing service (update): {}", response);
+        return response;
+    }
+
 }
