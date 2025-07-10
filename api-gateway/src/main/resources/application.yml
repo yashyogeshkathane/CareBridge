@@ -6,12 +6,11 @@ spring:
     gateway:
       routes:
         - id: auth-service-route
-        - uri: http://auth-service:4005
-        - predicates:
+          uri: http://auth-service:4005
+          predicates:
             - Path=/auth/**
-        - filters:
+          filters:
             - StripPrefix=1
-
 
         - id: patient-service-route
           uri: http://patient-service:4000
@@ -19,6 +18,7 @@ spring:
             - Path=/api/patients/**
           filters:
             - StripPrefix=1
+            - JwtValidation
 
         - id: api-docs-patient-route
           uri: http://patient-service:4000
