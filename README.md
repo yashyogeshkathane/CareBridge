@@ -120,5 +120,5 @@ carebridge/
 
 ## 📧 Contact
 
-Created with 💻 by [Yash Yogesh Kathane]  
-Email: [yashyogeshkathane@gmail.com]  
+Created with 💻 by Yash Yogesh Kathane  
+Email: yashyogeshkathane@gmail.com 
