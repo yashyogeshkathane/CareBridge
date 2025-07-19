@@ -34,6 +34,11 @@
 | `auth-service-db`     | PostgreSQL DB for storing user credentials and roles |
 
 ---
+## ARCHITECTURE
+
+![CareBridge Architecture](./yyk.png)
+
+---
 
 ## 🔗 Service Communication
 
